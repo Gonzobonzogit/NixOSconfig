@@ -1,7 +1,11 @@
 {config, pkgs, inputs, ... }:
 {
 xdg.configFile."quickshell/noctalia-shell".source = 
-	"${inputs.noctalia.packages.${pkgs.system}.default}/share/noctalia-shell"
+	"${inputs.noctalia.packages.${pkgs.system}.default}/share/noctalia-shell";
+
+xdg.configFile."noctalia/settings.json".source = 
+	(pkgs.formats.json{ }).generate "settings.json"
+	 (import ./noctalia-settings.nix { });
 
 home.username = "gonzo";
 home.homeDirectory = "/home/gonzo";
@@ -66,27 +70,27 @@ shellAliases = {
       {
         name = "zsh-autocomplete";
         src = pkgs.zsh-autocomplete;
-        file = "/nix/store/px608nzlv9qdkrzmsz2whn12kqqfd3r6-zsh-autocomplete-25.03.19/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
+        file = "share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
       }
       {
         name = "zsh-autopair";
         src = pkgs.zsh-autopair;
-        file = "/nix/store/ab5lrhq22bpc60xzar0xs1dxwq9wq5s4-zsh-autopair-1.0-unstable-2024-07-14/share/zsh/zsh-autopair/autopair.zsh";
+        file = "share/zsh/zsh-autopair/autopair.zsh";
       }
       {
       	name = "zsh-autosuggestions";
       	src = pkgs.zsh-autosuggestions;
-      	file = "/nix/store/vsif3vby6r992pnbc0j0ynafrdgsb2pq-zsh-autosuggestions-0.7.1/share/zsh-autosuggestions/zsh-autosuggestions.sh";
+      	file = "share/zsh-autosuggestions/zsh-autosuggestions.sh";
       }
       {
       	name = "zsh-syntax-highlighting";
       	src = pkgs.zsh-syntax-highlighting;
-      	file = "/nix/store/daw80f1pj1j6ic96zgswfvp30shxz9wl-zsh-syntax-highlighting-0.8.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      	file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
       {
       	name = "zsh-completions";
       	src = pkgs.zsh-completions;
-      	file = "/nix/store/436bj9csl3qjkigwjgis770w8g4gg1wb-nix-zsh-completions-0.5.1/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+      	file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
       }
     ];
     };

@@ -27,7 +27,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  
 
 
    networking.hostName = "NERVmobile"; # Define your hostname.
@@ -70,7 +70,10 @@
 
    };
 
-	
+	nix.settings = {
+		  extra-substituters = [ "https://noctalia.cachix.org" ];
+		  extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+		};	
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -86,13 +89,14 @@
      enable = true;
      pulse.enable = true;
      alsa.enable = true;
-     pulse.enable = true;
+     #pulse.enable = true;
      wireplumber.enable = true;     
    };
 
   # Enable touchpad support (enabled default in most desktopManager).
    services.libinput.enable = true; 
    security.rtkit.enable = true;
+   services.mullvad-vpn.enable = true;
  # Define a user account. Don't forget to set a password with ‘passwd’.
 
    users.users.gonzo = {
@@ -176,6 +180,7 @@
     pkgs.figlet
     pkgs.neo-cowsay
     pkgs.lmstudio
+    pkgs.gonzo
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts._3270
     pkgs.nerd-fonts.noto
@@ -232,6 +237,10 @@
     curl
     pkgs.emacs
     pkgs.emacsPackages.doom
+    pkgs.emacsPackages.doom-modeline
+    pkgs.emacsPackages.doom-themes
+    pkgs.emacsPackages.ewal-doom-themes
+    pkgs.doomretro
     thunderbird
     discord
     emacs-all-the-icons-fonts     
@@ -254,7 +263,16 @@
     pkgs.hyprmon
    	pkgs.noctalia-qs
     pkgs.noctalia-shell
-    xdg-desktop-portal-gnome
+    pkgs.nerd-fonts.d2coding
+    pkgs.nerd-fonts.fira-mono
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.departure-mono
+    pkgs.nerd-fonts.droid-sans-mono
+    pkgs.emacsPackages.compile-multi-nerd-icons
+    pkgs.emacsPackages.dynamic-fonts
+    pkgs.emacsPackages.nerd-icons
+    pkgs.xdg-desktop-portal-gnome
+    
     zsh
     fastfetch
     rsync 
