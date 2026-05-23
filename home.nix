@@ -1,11 +1,11 @@
 {config, pkgs, inputs, ... }:
 {
-#xdg.configFile."quickshell/noctalia-shell".source = 
-#	"${inputs.noctalia.packages.${pkgs.system}.default}/share/noctalia-shell";
+xdg.configFile."quickshell/noctalia-shell".source = 
+	"${inputs.noctalia.packages.${pkgs.system}.default}/share/noctalia-shell";
 
-xdg.configFile."noctalia/settings.json".source = 
-	(pkgs.formats.json{ }).generate "settings.json"
-	 (import ./noctalia-settings.nix { });
+#xdg.configFile."noctalia/settings.json".source = 
+#	(pkgs.formats.json{ }).generate "settings.json"
+#	 (import ./noctalia-settings.nix { });
 
 home.username = "gonzo";
 home.homeDirectory = "/home/gonzo";
