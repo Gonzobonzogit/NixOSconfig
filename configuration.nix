@@ -158,7 +158,7 @@
     pkgs.electron
     pkgs.protonmail-bridge
     pkgs.equicord
-#    pkgs.gonzo
+    pkgs.kitty
     pkgs.obsidian
     pkgs.figlet
     pkgs.neo-cowsay
@@ -228,17 +228,18 @@
     librewolf
     ff2mpv
     keepassxc
-    hyprland
-    hyprland-qt-support
-    hypridle
-    hyprkeys
-    #hyprcursor
-    hyprland-protocols
-    hyprland-qtutils
-    hyprlock
-    hyprlauncher
-    hyprmon
-    #inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.hyprland
+    pkgs.hyprland-qt-support
+    pkgs.hypridle
+    pkgs.hyprkeys
+    pkgs.hyprviz
+    pkgs.hyprpolkitagent
+    pkgs.hyprland-protocols
+    pkgs.hyprland-qtutils
+    pkgs.hyprlock
+    pkgs.hyprlauncher
+    pkgs.hyprmon
+   # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     xdg-desktop-portal-gnome
     zsh
     fastfetch
