@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 #let
 #	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
 #in	
@@ -17,6 +17,7 @@
    home-manager.useGlobalPkgs = true;
    home-manager.backupFileExtension = "backup";
    home-manager.users.gonzo = import ./home.nix;
+   home-manager.extraSpecialArgs = { inherit inputs; };
 
 
 
@@ -32,8 +33,8 @@
    networking.hostName = "NERVmobile"; # Define your hostname.
    nix.settings.experimental-features = [ "nix-command" "flakes"];
   # Configure network connections interactively with nmcli or nmtui.
-   #networking.networkmanager.enable = true; #Ethernet
-  # networking.wireless.enable = true; #Will enable WIFI when ready
+   networking.networkmanager.enable = true; 
+   networking.wireless.enable = true; #Will enable WIFI when ready
   # Set your time zone.
    time.timeZone = "America/Chicago";
 
@@ -69,7 +70,7 @@
 
    };
 
-
+	
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -81,14 +82,17 @@
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+   services.pipewire = {
+     enable = true;
+     pulse.enable = true;
+     alsa.enable = true;
+     pulse.enable = true;
+     wireplumber.enable = true;     
+   };
 
   # Enable touchpad support (enabled default in most desktopManager).
    services.libinput.enable = true; 
- 
+   security.rtkit.enable = true;
  # Define a user account. Don't forget to set a password with ‘passwd’.
 
    users.users.gonzo = {
@@ -135,6 +139,15 @@
     spotify-tray
     micro
     feh
+    pkgs.fuzzel
+    pkgs.networkmanagerapplet
+    pkgs.brightnessctl
+    pkgs.playerctl
+    pkgs.grim
+    pkgs.slurp
+    pkgs.wl-clipboard
+    pkgs.cliphist
+    pkgs.appimage-run
     pkgs.mojave-gtk-theme
     pkgs.gnome-tweaks
     pkgs.gnome-keyring
@@ -239,7 +252,8 @@
     pkgs.hyprlock
     pkgs.hyprlauncher
     pkgs.hyprmon
-   # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+   	pkgs.noctalia-qs
+    pkgs.noctalia-shell
     xdg-desktop-portal-gnome
     zsh
     fastfetch

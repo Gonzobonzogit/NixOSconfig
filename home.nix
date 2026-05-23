@@ -1,5 +1,8 @@
-{config, pkgs, ... }:
+{config, pkgs, inputs, ... }:
 {
+xdg.configFile."quickshell/noctalia-shell".source = 
+	"${inputs.noctalia.packages.${pkgs.system}.default}/share/noctalia-shell"
+
 home.username = "gonzo";
 home.homeDirectory = "/home/gonzo";
 home.stateVersion = "25.11";
